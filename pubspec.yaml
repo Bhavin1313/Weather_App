@@ -38,6 +38,13 @@ dependencies:
   http:
   connectivity_plus:
   provider:
+  curved_progress_bar: ^1.0.2
+  google_fonts:
+  introduction_screen: ^3.1.11
+  shared_preferences: ^2.2.0
+  url_launcher:
+  share_extend:
+  local_auth:
 
 dev_dependencies:
   flutter_test:
