@@ -14,11 +14,9 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 0,
-      ),
-      body: IntroductionScreen(
+    return Container(
+      color: Colors.white,
+      child: IntroductionScreen(
         globalBackgroundColor: Colors.blue.withOpacity(.2),
         pages: [
           PageViewModel(
@@ -54,7 +52,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
               width: w,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                  image: NetworkImage("lib/Components/Assets/weather_app2.png"),
+                  image: AssetImage("lib/Components/Assets/weather_app2.png"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -74,7 +72,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
               width: w,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                  image: NetworkImage("lib/Components/Assets/weather_app3.png"),
+                  image: AssetImage("lib/Components/Assets/weather_app3.png"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -94,7 +92,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
               width: w,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                  image: NetworkImage("lib/Components/Assets/3.jpg"),
+                  image: AssetImage("lib/Components/Assets/3.jpg"),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -115,7 +113,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: const DecorationImage(
-                  image: NetworkImage("lib/Components/Assets/22.jpg"),
+                  image: AssetImage("lib/Components/Assets/1.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -124,7 +122,7 @@ class _One_Time_Intro_PageState extends State<One_Time_Intro_Page> {
         ],
         showNextButton: true,
         next: const Text("Next"),
-        done: const Text("Done"),
+        done: const Text("Start"),
         onDone: () async {
           Navigator.pushReplacementNamed(context, 'splesh');
           SharedPreferences preferences = await SharedPreferences.getInstance();

@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                                             itemBuilder: (context, index) =>
                                                 Container(
                                               height: h * .25,
-                                              width: 100,
+                                              width: w * .3,
                                               margin: EdgeInsets.all(8),
                                               decoration: BoxDecoration(
                                                 color: Color(0xff3383cc)
@@ -236,11 +236,21 @@ class _HomePageState extends State<HomePage> {
                                                   Text(
                                                     "${index}:00",
                                                     style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 19,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.white),
                                                   ),
-                                                  Image.network(
-                                                      "http:${apimodel?.forecast['forecastday'][0]['hour'][index]['condition']['icon']}"),
+                                                  Container(
+                                                    height: 130,
+                                                    width: 120,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          "http:${apimodel?.forecast['forecastday'][0]['hour'][index]['condition']['icon']}"),
+                                                      fit: BoxFit.cover,
+                                                    )),
+                                                  ),
                                                   Text(
                                                       "${apimodel?.forecast['forecastday'][0]['hour'][index]['temp_c']}°",
                                                       style: TextStyle(
@@ -280,12 +290,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.thermostat,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "Feels like",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Text(
@@ -318,12 +329,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.air,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "NNW wind",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Row(
@@ -381,12 +393,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.water_drop_outlined,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "Humidity",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Row(
@@ -433,12 +446,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.sunny,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "UV",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Row(
@@ -496,12 +510,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.visibility,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "Visibility",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Row(
@@ -548,12 +563,13 @@ class _HomePageState extends State<HomePage> {
                                                 Icon(
                                                   Icons.compress_sharp,
                                                   color: Colors.white,
+                                                  size: 30,
                                                 ),
                                                 Text(
                                                   "Air pressure",
                                                   style: TextStyle(
                                                     color: Colors.white54,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                                 Row(
@@ -609,10 +625,12 @@ class _HomePageState extends State<HomePage> {
                                                   Icon(
                                                     Icons.sunny,
                                                     color: Colors.white,
+                                                    size: 30,
                                                   ),
                                                   Icon(
                                                     Icons.sunny_snowing,
                                                     color: Colors.white,
+                                                    size: 30,
                                                   )
                                                 ],
                                               ),

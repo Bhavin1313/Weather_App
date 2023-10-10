@@ -14,7 +14,7 @@ void main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      initialRoute: (isVisitOnce == true) ? 'home' : '/',
+      initialRoute: (isVisitOnce == true) ? 'splesh' : '/',
       routes: {
         '/': (context) => const One_Time_Intro_Page(),
         'splesh': (context) => Splash(),
