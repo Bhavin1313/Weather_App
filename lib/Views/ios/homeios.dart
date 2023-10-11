@@ -1,39 +1,28 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:curved_progress_bar/curved_progress_bar.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app_pr/Components/Helpers/apihelper.dart';
-import 'package:weather_app_pr/Model/api_model.dart';
-
+import '../../Model/api_model.dart';
 import '../../Provider/platformprovider.dart';
 import '../../Provider/theamprovider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeIos extends StatefulWidget {
+  const HomeIos({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeIos> createState() => _HomeIosState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeIosState extends State<HomeIos> {
   TextEditingController search = TextEditingController();
   String searchData = "";
   Connectivity connectivity = Connectivity();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Api_Helper.api.fetchWeather(search: searchData);
-  }
-
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: StreamBuilder(
+    return CupertinoPageScaffold(
+      child: StreamBuilder(
         stream: connectivity.onConnectivityChanged,
         builder: (
           BuildContext context,
@@ -50,16 +39,17 @@ class _HomePageState extends State<HomePage> {
                           if (snapshot.hasError) {
                             return Text("${snapshot.error}");
                           } else if (snapshot.hasData) {
-                            Weather_Model? apimodel = snapshot.data;
+                            Weather_Model? apimodel =
+                                snapshot.data as Weather_Model?;
                             return Stack(
                               children: [
                                 Container(
                                   height: MediaQuery.of(context).size.height,
                                   width: MediaQuery.of(context).size.width,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          "lib/Components/Assets/blue-sky-clouds-aesthetic-background.jpg"),
+                                          "lib/Components/Assets/istockphoto-502046948-170667a.webp"),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -67,46 +57,38 @@ class _HomePageState extends State<HomePage> {
                                 SingleChildScrollView(
                                   child: Column(
                                     children: [
-                                      const SizedBox(
+                                      SizedBox(
                                         height: 40,
                                       ),
                                       Container(
-                                        height: h * .1,
-                                        padding: const EdgeInsets.all(10),
-                                        child: TextFormField(
+                                        margin: EdgeInsets.all(20),
+                                        child: CupertinoTextField(
+                                          suffix: CupertinoButton(
+                                            child: Icon(CupertinoIcons.search),
+                                            onPressed: () {
+                                              setState(() {
+                                                searchData = search.text;
+                                              });
+                                              search.clear();
+                                            },
+                                          ),
+                                          controller: search,
                                           onEditingComplete: () {
                                             setState(() {
                                               searchData = search.text;
                                             });
                                             search.clear();
                                           },
-                                          controller: search,
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(40),
-                                              ),
-                                              filled: true,
-                                              fillColor:
-                                                  Colors.white.withOpacity(.5),
-                                              suffix: IconButton(
-                                                icon: const Icon(
-                                                  Icons.search,
-                                                ),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    searchData = search.text;
-                                                  });
-                                                  search.clear();
-                                                },
-                                              ),
-                                              hintText: "Search Hear........"),
+                                          placeholder: "Search Here..",
+                                          placeholderStyle: TextStyle(
+                                              color: CupertinoColors.black,
+                                              fontSize: 24),
                                         ),
                                       ),
                                       const SizedBox(
                                         height: 70,
                                       ),
-                                      SizedBox(
+                                      Container(
                                         height: h * .16,
                                         width: w * .9,
                                         child: Row(
@@ -114,21 +96,20 @@ class _HomePageState extends State<HomePage> {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   "${apimodel?.location['name']}",
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 40,
+                                                  style: TextStyle(
+                                                    fontSize: 30,
+                                                    color:
+                                                        CupertinoColors.white,
                                                   ),
                                                 ),
                                                 Text(
                                                   "${apimodel?.location['region']},${apimodel?.location['country']}",
                                                   style: const TextStyle(
-                                                    color: Colors.white,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
                                                   ),
@@ -136,32 +117,35 @@ class _HomePageState extends State<HomePage> {
                                                 Text(
                                                   "${apimodel?.location['localtime']}",
                                                   style: const TextStyle(
-                                                    color: Colors.white,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20,
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                            IconButton(
-                                              onPressed: () {
-                                                Provider.of<Themeprovider>(
-                                                        context,
-                                                        listen: false)
-                                                    .changetheme();
-                                              },
-                                              icon: Icon(
+                                            CupertinoButton(
+                                              child: Icon(
                                                 (Provider.of<Themeprovider>(
                                                                 context,
                                                                 listen: false)
                                                             .theme
                                                             .isdark ==
                                                         false)
-                                                    ? Icons.sunny
-                                                    : Icons.sunny_snowing,
+                                                    ? CupertinoIcons.sun_max
+                                                    : CupertinoIcons
+                                                        .sun_min_fill,
+                                                color: CupertinoColors.white,
                                               ),
+                                              onPressed: () {
+                                                Provider.of<Themeprovider>(
+                                                        context,
+                                                        listen: false)
+                                                    .changetheme();
+                                              },
                                             ),
-                                            Switch(
+                                            CupertinoSwitch(
                                               value:
                                                   Provider.of<PlatformProvider>(
                                                           context,
@@ -174,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                                         listen: false)
                                                     .ConvertPlatform();
                                               },
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -202,7 +186,8 @@ class _HomePageState extends State<HomePage> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 50,
-                                                      color: Colors.white,
+                                                      color:
+                                                          CupertinoColors.white,
                                                     ),
                                                   ),
                                                   Column(
@@ -218,7 +203,9 @@ class _HomePageState extends State<HomePage> {
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Colors.white,
+                                                            color:
+                                                                CupertinoColors
+                                                                    .white,
                                                             fontSize: 25),
                                                       ),
                                                       SingleChildScrollView(
@@ -226,14 +213,14 @@ class _HomePageState extends State<HomePage> {
                                                             Axis.vertical,
                                                         child: Text(
                                                           "${apimodel?.current['condition']['text']} ",
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: Colors
+                                                          style: const TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  CupertinoColors
                                                                       .white,
-                                                                  fontSize: 19),
+                                                              fontSize: 19),
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                         ),
@@ -264,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                                                 Container(
                                               height: h * .25,
                                               width: w * .3,
-                                              margin: const EdgeInsets.all(8),
+                                              margin: EdgeInsets.all(8),
                                               decoration: BoxDecoration(
                                                 color: const Color(0xff3383cc)
                                                     .withOpacity(.4),
@@ -277,12 +264,14 @@ class _HomePageState extends State<HomePage> {
                                                         .spaceEvenly,
                                                 children: [
                                                   Text(
-                                                    "$index:00",
-                                                    style: const TextStyle(
-                                                        fontSize: 19,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white),
+                                                    "${index}:00",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color:
+                                                          CupertinoColors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                   Container(
                                                     height: 100,
@@ -296,10 +285,13 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                   ),
                                                   Text(
-                                                      "${apimodel?.forecast['forecastday'][0]['hour'][index]['temp_c']}°",
-                                                      style: const TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.white)),
+                                                    "${apimodel?.forecast['forecastday'][0]['hour'][index]['temp_c']}℃",
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color:
+                                                          CupertinoColors.white,
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -332,21 +324,23 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.thermostat,
-                                                  color: Colors.white,
+                                                  CupertinoIcons.thermometer,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "Feels like",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
                                                 Text(
                                                   "${apimodel?.current['temp_c']}°",
                                                   style: const TextStyle(
-                                                    color: Colors.white,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 24,
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -371,14 +365,15 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.air,
-                                                  color: Colors.white,
+                                                  CupertinoIcons.wind,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "NNW wind",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
@@ -387,7 +382,8 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       "${apimodel?.current['wind_kph']}",
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -396,7 +392,8 @@ class _HomePageState extends State<HomePage> {
                                                     const Text(
                                                       "  Km/h",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -435,14 +432,15 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.water_drop_outlined,
-                                                  color: Colors.white,
+                                                  CupertinoIcons.drop,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "Humidity",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
@@ -451,7 +449,8 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       "${apimodel?.current['humidity']}",
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -460,7 +459,8 @@ class _HomePageState extends State<HomePage> {
                                                     const Text(
                                                       "  % ",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -488,14 +488,15 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.sunny,
-                                                  color: Colors.white,
+                                                  CupertinoIcons.sun_min_fill,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "UV",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
@@ -504,7 +505,8 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       "${apimodel?.current['uv']}",
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -513,7 +515,8 @@ class _HomePageState extends State<HomePage> {
                                                     const Text(
                                                       "  Strong ",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -552,14 +555,15 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.visibility,
-                                                  color: Colors.white,
+                                                  CupertinoIcons.eye,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "Visibility",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
@@ -568,7 +572,8 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       "${apimodel?.current['vis_km']}",
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -577,7 +582,8 @@ class _HomePageState extends State<HomePage> {
                                                     const Text(
                                                       "  Km ",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -605,14 +611,16 @@ class _HomePageState extends State<HomePage> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 const Icon(
-                                                  Icons.compress_sharp,
-                                                  color: Colors.white,
+                                                  CupertinoIcons
+                                                      .rectangle_compress_vertical,
+                                                  color: CupertinoColors.white,
                                                   size: 30,
                                                 ),
                                                 const Text(
                                                   "Air pressure",
                                                   style: TextStyle(
-                                                    color: Colors.white54,
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 14,
                                                   ),
                                                 ),
@@ -621,7 +629,8 @@ class _HomePageState extends State<HomePage> {
                                                     Text(
                                                       "${apimodel?.current['pressure_mb']}",
                                                       style: const TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 24,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -630,7 +639,8 @@ class _HomePageState extends State<HomePage> {
                                                     const Text(
                                                       "  hPa ",
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: CupertinoColors
+                                                            .white,
                                                         fontSize: 11,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -642,98 +652,6 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                         ],
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          padding: const EdgeInsets.all(20),
-                                          height: h * .25,
-                                          width: w * .9,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff3383cc)
-                                                .withOpacity(.4),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              const Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Icon(
-                                                    Icons.sunny,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  Icon(
-                                                    Icons.sunny_snowing,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  )
-                                                ],
-                                              ),
-                                              const CurvedLinearProgressIndicator(
-                                                value: 0.4,
-                                                strokeWidth: 8,
-                                                backgroundColor: Colors.white,
-                                                color: Colors.blueAccent,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      const Text(
-                                                        "Sunrise",
-                                                        style: TextStyle(
-                                                          color: Colors.white54,
-                                                          fontSize: 12,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "${apimodel?.forecast['forecastday'][0]['astro']['sunrise']}",
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 12,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const Text(
-                                                        "Sunset",
-                                                        style: TextStyle(
-                                                          color: Colors.white54,
-                                                          fontSize: 12,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "${apimodel?.forecast['forecastday'][0]['astro']['sunset']}",
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 12,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ),
                                       const SizedBox(
                                         height: 20,
@@ -744,8 +662,8 @@ class _HomePageState extends State<HomePage> {
                               ],
                             );
                           }
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                          return Center(
+                            child: CupertinoActivityIndicator(),
                           );
                         },
                       ),
