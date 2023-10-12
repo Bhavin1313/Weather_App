@@ -1,5 +1,5 @@
-![Screenshot_20231012_110801](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/98429c80-85ec-47d8-9620-1e541958e5d6)
-![Screenshot_20231012_110753](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/fe59742b-e288-496a-a761-17f1dcde8ddf)
+![Screenshot_20231012_110801](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/98429c80-85ec-47d8-9620-1e541958e5d6) ![Screenshot_20231012_110753](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/fe59742b-e288-496a-a761-17f1dcde8ddf)
+
 ![Screenshot_20231012_110746](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/05812759-c5d4-41bd-87bf-1ac780145b22)
 ![Screenshot_20231012_110734](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/511e4cec-5a3d-4ffe-8b32-739bd884f37d)
 ![Screenshot_20231012_110845](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/5ced6ab8-b1d5-4a33-a591-1d1802ff9cae)
