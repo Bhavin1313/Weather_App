@@ -86,10 +86,10 @@ class _HomeIosState extends State<HomeIos> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        height: 70,
+                                        height: 40,
                                       ),
                                       Container(
-                                        height: h * .16,
+                                        height: h * .25,
                                         width: w * .9,
                                         child: Row(
                                           mainAxisAlignment:
@@ -106,20 +106,27 @@ class _HomeIosState extends State<HomeIos> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${apimodel?.location['region']},${apimodel?.location['country']}",
+                                                  "${apimodel?.current['temp_c']}°",
                                                   style: const TextStyle(
                                                     color:
                                                         CupertinoColors.white,
-                                                    fontWeight: FontWeight.w400,
+                                                    fontWeight: FontWeight.w200,
+                                                    fontSize: 90,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "${apimodel?.current['condition']['text']} ",
+                                                  style: const TextStyle(
+                                                    color:
+                                                        CupertinoColors.white,
                                                     fontSize: 20,
                                                   ),
                                                 ),
                                                 Text(
-                                                  "${apimodel?.location['localtime']}",
+                                                  "H:${apimodel?.forecast['forecastday'][0]['day']['maxtemp_c']}°  L:${apimodel?.forecast['forecastday'][0]['day']['mintemp_c']}°",
                                                   style: const TextStyle(
                                                     color:
                                                         CupertinoColors.white,
-                                                    fontWeight: FontWeight.w400,
                                                     fontSize: 20,
                                                   ),
                                                 ),
@@ -163,77 +170,6 @@ class _HomeIosState extends State<HomeIos> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        height: 70,
-                                      ),
-                                      Center(
-                                        child: Container(
-                                          padding: const EdgeInsets.all(10),
-                                          height: h * .14,
-                                          width: w * .9,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff3383cc)
-                                                .withOpacity(.4),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    "${apimodel?.current['temp_c']}°",
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 50,
-                                                      color:
-                                                          CupertinoColors.white,
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      const Text(
-                                                        "",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                CupertinoColors
-                                                                    .white,
-                                                            fontSize: 25),
-                                                      ),
-                                                      SingleChildScrollView(
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        child: Text(
-                                                          "${apimodel?.current['condition']['text']} ",
-                                                          style: const TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color:
-                                                                  CupertinoColors
-                                                                      .white,
-                                                              fontSize: 19),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Center(
@@ -241,20 +177,19 @@ class _HomeIosState extends State<HomeIos> {
                                           height: h * .25,
                                           width: w * .9,
                                           decoration: BoxDecoration(
+                                            color: const Color(0xff3383cc)
+                                                .withOpacity(.4),
                                             borderRadius:
-                                                BorderRadius.circular(25),
+                                                BorderRadius.circular(10),
                                           ),
                                           child: ListView.builder(
                                             itemCount: 24,
                                             scrollDirection: Axis.horizontal,
                                             itemBuilder: (context, index) =>
                                                 Container(
-                                              height: h * .25,
-                                              width: w * .3,
-                                              margin: EdgeInsets.all(8),
+                                              height: h * .20,
+                                              width: w * .25,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xff3383cc)
-                                                    .withOpacity(.4),
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               ),
@@ -285,7 +220,7 @@ class _HomeIosState extends State<HomeIos> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    "${apimodel?.forecast['forecastday'][0]['hour'][index]['temp_c']}℃",
+                                                    "${apimodel?.forecast['forecastday'][0]['hour'][index]['temp_c']}°",
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       color:
@@ -310,10 +245,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
@@ -351,10 +286,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
@@ -418,10 +353,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
@@ -474,10 +409,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
@@ -541,10 +476,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
@@ -597,10 +532,10 @@ class _HomeIosState extends State<HomeIos> {
                                           Container(
                                             padding: const EdgeInsets.all(10),
                                             height: h * .17,
-                                            width: w * .4,
+                                            width: w * .44,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(10),
                                               color: const Color(0xff3383cc)
                                                   .withOpacity(.4),
                                             ),
