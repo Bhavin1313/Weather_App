@@ -1,16 +1,16 @@
-# weather_app_pr
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_20231012_110801](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/98429c80-85ec-47d8-9620-1e541958e5d6)
+![Screenshot_20231012_110753](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/fe59742b-e288-496a-a761-17f1dcde8ddf)
+![Screenshot_20231012_110746](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/05812759-c5d4-41bd-87bf-1ac780145b22)
+![Screenshot_20231012_110734](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/511e4cec-5a3d-4ffe-8b32-739bd884f37d)
+![Screenshot_20231012_110845](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/5ced6ab8-b1d5-4a33-a591-1d1802ff9cae)
+![Screenshot_20231012_110836](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/883b572d-edff-4015-ba9a-cd1a1f796d6c)
+![Screenshot_20231012_110829](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/c3c096d7-ee4d-4fe7-9e64-fb5de54b84d6)
+![Screenshot_20231012_110810](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/95cd8dc4-b463-430d-baee-bd816ba7f219)
+![Screenshot_20231012_110926](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/5b02b20a-457e-430c-b3e4-6794640794cc)
+![Screenshot_20231012_110919](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/2e5d53e2-928e-4144-a845-9541ea918dd2)
+![Screenshot_20231012_110909](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/05c6c0e3-507f-4046-8845-5cdf7a0648a0)
+![Screenshot_20231012_111024](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/7e69ea4d-44ae-45e3-8f31-714ecfccf7ef)
+![Screenshot_20231012_111017](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/67fc538a-16c0-4f30-b603-1d6bd6c2fd3c)
+![Screenshot_20231012_110950](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/f5893ef4-4846-4611-8888-bdd626c2d4ef)
+![Screenshot_20231012_110944](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/776f8814-fc27-4057-aa1f-d7a46a239348)
+![Screenshot_20231012_110935](https://github.com/Bhavin1313/Weather_App_PR_5/assets/99348404/0715a70d-8923-4f35-89ab-ec3be0e067b6)
